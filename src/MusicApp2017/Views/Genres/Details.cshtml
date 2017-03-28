@@ -1,0 +1,66 @@
+@model IEnumerable<MusicApp2017.Models.Album>
+
+@{
+    ViewData["Title"] = "Genre Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    @*<h4>Genre Edit</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            @*Genre:*@
+
+        </dt>
+        <dd>
+            @*@Html.DisplayFor(model => model.Name)*@
+            @*@Model.First().Genre.Name*@
+
+        </dd>
+    </dl>
+    @*Try and display albums that are linked to the genre*@
+
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </dt>
+        <dd>
+            @*@Html.DisplayFor(model => model.Name)*@
+        </dd>
+    </dl>
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Album</th>
+            <th>Artist</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.AlbumID">@Html.DisplayFor(modelItem => item.Title)</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Artist">@Html.DisplayFor(modelItem => item.Artist.Name)</a>
+                </td>
+                <td>
+                    <a asp-controller="Genres" asp-action="Details" asp-route-id="@item.GenreID">@Html.DisplayFor(modelItem => item.Genre.Name)</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Details" asp-route-id="@Model.First().GenreID" class="btn btn-lg btn-info">Edit</a>
+    <a asp-action="Index" class="btn btn-lg btn-info">Back to Genre Home</a>
+    
+</div>

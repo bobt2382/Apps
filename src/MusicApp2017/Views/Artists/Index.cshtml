@@ -1,0 +1,52 @@
+@model IEnumerable<MusicApp2017.Models.Artist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Artists Index</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-lg btn-info">Add New Artist</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                Artist 
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Genre)*@
+                Bio
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@*This is the artist name obtained from dbase*@
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+
+
+                <a asp-action="Details" asp-route-id="@item.ArtistID">@Html.DisplayFor(modelItem => item.Name)</a>
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ArtistID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.ArtistID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-info">Go back to Home</a>
+
+</div>
+

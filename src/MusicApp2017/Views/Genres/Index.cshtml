@@ -1,0 +1,47 @@
+@model IEnumerable<MusicApp2017.Models.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Genre Home Page</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-lg btn-info">Add New Music Genre</a>
+</p>
+<table class="table">
+
+    <thead>
+
+        <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@
+                  <h3>Available Genres</h3> 
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @*Below action creates a link for each Genre*@
+                <a asp-action="Details" asp-route-id="@item.GenreID">@Html.DisplayFor(modelItem => item.Name)</a>
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GenreID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GenreID">Details</a>
+                @*Do not include delete option*@
+                @*<a asp-action="Delete" asp-route-id="@item.GenreID">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-info">Go back to Home</a>
+
+</div>
+
